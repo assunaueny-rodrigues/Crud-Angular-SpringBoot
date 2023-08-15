@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'courses',
     loadChildren: () =>
-      import('./modules/courses/courses.module').then((m) => m.CoursesModule),
+      import('./routes/courses/courses.module').then((m) => m.CoursesModule),
   },
 ];
 
