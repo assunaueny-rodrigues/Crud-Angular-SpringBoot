@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Course } from 'src/app/routes/courses/models';
+import { SpinnerComponent } from '../spinner/spinner.component';
+import { CardComponent } from '../card/card.component';
 
 @Component({
   standalone: true,
@@ -14,7 +17,7 @@ import { Course } from 'src/app/routes/courses/models';
       }
     `,
   ],
-  imports: [MatTableModule, CommonModule],
+  imports: [MatTableModule, CommonModule, SpinnerComponent, CardComponent],
 })
 export class TableComponent {
   @Input()
@@ -22,4 +25,7 @@ export class TableComponent {
 
   @Input()
   data: Course[] = [];
+
+  @Input()
+  loading = false;
 }

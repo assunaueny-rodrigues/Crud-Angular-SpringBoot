@@ -1,1 +1,9 @@
-<app-table [headers]="headers" [data]="courses"></app-table>
+<ng-container>
+  <app-page-header pageTitle="Cursos"></app-page-header>
+
+  <app-table
+    [headers]="headers"
+    [data]="courses"
+    [loading]="loading"
+  ></app-table>
+</ng-container>
