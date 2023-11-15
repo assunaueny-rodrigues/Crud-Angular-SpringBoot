@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ToolbarComponent } from './lib/toolbar/toolbar.component';
-
 @NgModule({
   declarations: [AppComponent],
   providers: [],

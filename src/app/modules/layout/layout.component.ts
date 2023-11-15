@@ -11,9 +11,9 @@ import { MatCardModule } from '@angular/material/card';
   styles: [
     `
       main {
-        padding: 32px;
-        height: 100vh;
-        overflow: scroll;
+        padding: 0px 32px 32px 32px;
+        height: 90vh;
+        overflow-y: scroll;
       }
     `,
   ],

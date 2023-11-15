@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Course } from 'src/app/routes/courses/models';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { CardComponent } from '../card/card.component';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -24,8 +25,8 @@ export class TableComponent {
   headers: string[] = [];
 
   @Input()
-  data: Course[] = [];
+  data$ = new Observable<Course[]>();
 
   @Input()
-  loading = false;
+  loading = true;
 }
