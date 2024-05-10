@@ -44,7 +44,6 @@ export class CoursesComponent implements OnDestroy {
 
   private buscarListaDeCursos(): void {
     this.courses$ = this.coursesService.listaCursos().pipe(
-      delayWhen(() => timer(3000)),
       catchError(() => {
         this.onError('Erro ao carregar cursos');
         return of([]);
