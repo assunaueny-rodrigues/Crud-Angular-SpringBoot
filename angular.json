@@ -64,19 +64,19 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
-						"production": {
-							"browserTarget": "crud-angular:build:production"
+            "production": {
+              "buildTarget": "crud-angular:build:production"
 						},
-						"development": {
-							"browserTarget": "crud-angular:build:development"
+            "development": {
+              "buildTarget": "crud-angular:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "crud-angular:build"
+          "options": {
+            "buildTarget": "crud-angular:build"
 					}
 				},
 				"test": {
