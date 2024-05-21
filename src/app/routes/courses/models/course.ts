@@ -1,6 +1,7 @@
 export enum CourseColumns {
   name = 'name',
   category = 'category',
+  actions = 'actions',
 }
 
 export interface Course {

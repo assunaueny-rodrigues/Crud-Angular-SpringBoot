@@ -6,6 +6,9 @@ import { Course } from 'src/app/routes/courses/models';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { CardComponent } from '../card/card.component';
 import { Observable } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -18,7 +21,7 @@ import { Observable } from 'rxjs';
       }
     `,
   ],
-  imports: [MatTableModule, CommonModule, SpinnerComponent, CardComponent],
+  imports: [MatTableModule, CommonModule, SpinnerComponent, CardComponent, MatButtonModule, MatIconModule],
 })
 export class TableComponent {
   @Input()
@@ -29,4 +32,12 @@ export class TableComponent {
 
   @Input()
   loading = true;
+
+  constructor(private readonly router: Router, private readonly acivatedRoute: ActivatedRoute){
+
+  }
+
+  onAdd(): void {
+    this.router.navigate(['new'], { relativeTo: this.acivatedRoute })
+  }
 }

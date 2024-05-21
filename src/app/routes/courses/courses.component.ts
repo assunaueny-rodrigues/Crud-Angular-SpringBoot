@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { TableComponent } from 'src/app/lib/table/table.component';
-import { Course, CourseColumns } from '../models';
+import { Course, CourseColumns } from './models';
 import { MatCardModule } from '@angular/material/card';
 import { CardComponent } from 'src/app/lib/card/card.component';
-import { CoursesService } from '../services/courses.service';
+import { CoursesService } from './services/courses.service';
 import { SubscriptionManager } from 'src/app/lib/core/subscription-manager/subscription-manager';
-import { Observable, catchError, delayWhen, of, timer } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PageHeaderComponent } from 'src/app/lib/page-header/page-header.component';
 import { CommonModule } from '@angular/common';
@@ -31,7 +31,7 @@ import { ErrorDialogComponent } from 'src/app/lib/error-dialog/error-dialog.comp
 })
 export class CoursesComponent implements OnDestroy {
   courses$ = new Observable<Course[]>();
-  headers = [CourseColumns.name, CourseColumns.category];
+  headers = [CourseColumns.name, CourseColumns.category, CourseColumns.actions];
 
   private readonly subManager = new SubscriptionManager();
 
