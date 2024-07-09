@@ -1,16 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CoursesService } from '../../services/courses.service';
+import { SubscriptionManager } from 'src/app/lib/core/subscription-manager/subscription-manager';
+import { AlertService } from 'src/app/shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-course-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatCardModule, MatToolbarModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatCardModule, MatToolbarModule, MatButtonModule, MatSelectModule],
   templateUrl: './course-form-component.html',
   styles: [`
     mat-card {
@@ -33,19 +37,27 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseFormComponent { 
+export class CourseFormComponent {
 
   formGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder){
-    this.formGroup = this.formBuilder.group({
+  readonly subscriptionManager = new SubscriptionManager();
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly courseService: CoursesService,
+    private readonly alertService: AlertService
+  ){
+      this.formGroup = this.formBuilder.group({
       name: new FormControl(undefined),
       category: new FormControl(undefined)
     })
   }
 
   courseSave(): void {
-
+    this.courseService.addCourse(this.formGroup.value).pipe(this.subscriptionManager.takeUntilAlive).subscribe({
+      error: this.alertService.showErrorMessage
+    })
   }
 
   cancel(): void {

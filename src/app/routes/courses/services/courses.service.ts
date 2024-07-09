@@ -11,7 +11,11 @@ export class CoursesService {
 
   constructor(private readonly httpClient: HttpClient) {}
 
-  listaCursos(): Observable<Course[]> {
+  courseList(): Observable<Course[]> {
     return this.httpClient.get<Course[]>(this.API);
+  }
+
+  addCourse(course: Course): Observable<Course> {
+    return this.httpClient.post<Course>(this.API, course)
   }
 }

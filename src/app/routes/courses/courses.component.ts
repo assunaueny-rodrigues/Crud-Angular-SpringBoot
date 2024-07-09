@@ -43,7 +43,7 @@ export class CoursesComponent implements OnDestroy {
   }
 
   private buscarListaDeCursos(): void {
-    this.courses$ = this.coursesService.listaCursos().pipe(
+    this.courses$ = this.coursesService.courseList().pipe(
       catchError(() => {
         this.onError('Erro ao carregar cursos');
         return of([]);

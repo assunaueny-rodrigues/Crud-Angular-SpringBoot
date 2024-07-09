@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ToolbarComponent } from './lib/toolbar/toolbar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [AppComponent],
   providers: [],
@@ -15,6 +16,7 @@ import { ToolbarComponent } from './lib/toolbar/toolbar.component';
     BrowserModule,
     HttpClientModule,
     ToolbarComponent,
+    MatSnackBarModule
   ],
 })
 export class AppModule {}
