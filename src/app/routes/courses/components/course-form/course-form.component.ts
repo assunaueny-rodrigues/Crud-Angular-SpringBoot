@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CoursesService } from '../../services/courses.service';
 import { SubscriptionManager } from 'src/app/lib/core/subscription-manager/subscription-manager';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-course-form',
@@ -46,7 +47,8 @@ export class CourseFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private readonly courseService: CoursesService,
-    private readonly alertService: AlertService
+    private readonly alertService: AlertService,
+    private readonly location: Location
   ){
       this.formGroup = this.formBuilder.group({
       name: new FormControl(undefined),
@@ -56,11 +58,17 @@ export class CourseFormComponent {
 
   courseSave(): void {
     this.courseService.addCourse(this.formGroup.value).pipe(this.subscriptionManager.takeUntilAlive).subscribe({
+      next: this.returnToHome,
       error: this.alertService.showErrorMessage
     })
   }
 
-  cancel(): void {
+  returnToHome = (): void => {
+    this.location.back();
+    this.alertService.showSuccessMessage('Curso cadastrado com sucessso!')
+  }
 
+  cancel(): void {
+    this.location.back();
   }
 }

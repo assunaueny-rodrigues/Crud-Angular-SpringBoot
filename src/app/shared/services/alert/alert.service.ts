@@ -13,4 +13,8 @@ export class AlertService {
     this.snackBar.open(message,'', { duration: 5000 });
   }
 
+  showSuccessMessage = (message: string): void  => {
+    this.snackBar.open(message,'', { duration: 5000 });
+  }
+
 }
